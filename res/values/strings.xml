@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">WebViewPrototype</string>
+    <string name="menu_settings">Settings</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="button_send">Send</string>
+    <string name="button_submit">Login</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_display_message">My Message</string>
+    <string name="user_name">Enter Username</string>
+    <string name="password">Enter Password</string>
+    <string name="error">Hello</string>
+    <string name="charity">Hello There</string>
+    <string name="title_activity_charity">CharityActivity</string>
+
+</resources>
