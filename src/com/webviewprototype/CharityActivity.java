@@ -1,17 +1,20 @@
 package com.webviewprototype;
 
-import android.os.Build;
-import android.os.Bundle; 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
-import android.support.v4.app.NavUtils;
+
+import com.webviewprototype.database.testactivities.TestActivity;
 
 public class CharityActivity extends Activity {
 	
@@ -71,6 +74,11 @@ public class CharityActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void temp_redirect(View view) {
+		Intent intent = new Intent(this, TestActivity.class);
+		startActivity(intent);
 	}
 
 }

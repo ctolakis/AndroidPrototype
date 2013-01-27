@@ -3,7 +3,7 @@ package com.webviewprototype.database;
 import android.provider.BaseColumns;
 
 public abstract class DBContract {
-	
+
 	public static final String COLUMN_NAME_DATE_CREATED = "Date_Created";
 	public static final String COLUMN_NAME_IS_ACTIVE = "isActive";
 	public static final String COLUMN_NAME_TIMESTAMP = "Timestamp";
