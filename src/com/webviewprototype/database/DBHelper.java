@@ -13,13 +13,13 @@ public class DBHelper extends SQLiteOpenHelper {
 	private static final String TEXT_TYPE = " TEXT";
 	private static final String COMMA_SEP = ",";
     private static final String SQL_CREATE_ENTRIES = 
-    		"CREATE TABLE " + DBContract.FormTable.TABLE_NAME + " (" +
+    		"CREATE TABLE IF NOT EXISTS " + DBContract.FormTable.TABLE_NAME + " (" +
     		DBContract.FormTable._ID + " INTEGER PRIMARY KEY," +
     		DBContract.FormTable.COLUMN_NAME_FORM_ID + " INTEGER UNIQUE," +
     		DBContract.FormTable.COLUMN_NAME_FORM_TYPE_ID + " INTEGER UNIQUE," +
     		DBContract.FormTable.COLUMN_NAME_FORM_NAME + TEXT_TYPE + COMMA_SEP +
     		DBContract.COLUMN_NAME_DATE_CREATED + TEXT_TYPE + COMMA_SEP +
-    		DBContract.FormTable.COLUMN_NAME_URL + TEXT_TYPE + COMMA_SEP +
+    		DBContract.FormTable.COLUMN_NAME_URL + TEXT_TYPE + 
     		" )";
     private static final String SQL_DELETE_ENTRIES = 
     		"DROP TABLE IF EXISTS " + DBContract.FormTable.TABLE_NAME;

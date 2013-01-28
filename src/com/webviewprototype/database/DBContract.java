@@ -3,10 +3,9 @@ package com.webviewprototype.database;
 import android.provider.BaseColumns;
 
 public abstract class DBContract {
-
-	public static final String COLUMN_NAME_DATE_CREATED = "Date_Created";
-	public static final String COLUMN_NAME_IS_ACTIVE = "isActive";
-	public static final String COLUMN_NAME_TIMESTAMP = "Timestamp";
+	
+	public static final String DATABASE_NAME = "CharityDB.db";
+	public static final Integer VERSION = 1;
 	
 	private DBContract() {}
 	
@@ -16,7 +15,10 @@ public abstract class DBContract {
 		public static final String COLUMN_NAME_FORM_ID = "Form_Id";
 		public static final String COLUMN_NAME_FORM_TYPE_ID = "Form_Type_ID";
 		public static final String COLUMN_NAME_FORM_NAME = "Form_Name";
-		public static final String COLUMN_NAME_URL = "URL";	
+		public static final String COLUMN_NAME_DATE_CREATED = "Date_Created";
+		public static final String COLUMN_NAME_URL = "URL";
+		public static final String COLUMN_NAME_IS_ACTIVE = "isActive";
+		public static final String COLUMN_NAME_TIMESTAMP = "Timestamp";
 	}
 	
 	public static abstract class FormFields implements BaseColumns {
@@ -34,6 +36,9 @@ public abstract class DBContract {
 		public static final String COLUMN_NAME_MIN_VALUE = "Min_Value";
 		public static final String COLUMN_NAME_MAX_VALUE = "Max_Value";
 		public static final String COLUMN_NAME_USER_ID = "User_Id";
+		public static final String COLUMN_NAME_DATE_CREATED = "Date_Created";
+		public static final String COLUMN_NAME_IS_ACTIVE = "isActive";
+		public static final String COLUMN_NAME_TIMESTAMP = "Timestamp";
 	}
 	
 	public static abstract class FieldType implements BaseColumns {
@@ -54,5 +59,7 @@ public abstract class DBContract {
 		public static final String COLUMN_NAME_VALUE = "Value";
 		public static final String COLUMN_NAME_USER_ID = FormFields.COLUMN_NAME_USER_ID;
 		public static final String COLUMN_NAME_RECORD_ID = "Record_Id";
+		public static final String COLUMN_NAME_IS_ACTIVE = "isActive";
+		public static final String COLUMN_NAME_TIMESTAMP = "Timestamp";
 	}
 }
