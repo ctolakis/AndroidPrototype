@@ -28,7 +28,6 @@ public abstract class DBContract {
 		public static final String COLUMN_NAME_FORM_ID = FormTable.COLUMN_NAME_FORM_ID;
 		public static final String COLUMN_NAME_FIELD_LABEL = "Field_Label";
 		public static final String COLUMN_NAME_FIELD_TYPE_ID = FieldType.COLUMN_NAME_FIELD_TYPE_ID;
-		public static final String COLUMN_NAME_FIELD_SELECTION_ID = "Field_Selection_Id";
 		public static final String COLUMN_NAME_X_COORDINATE = "X_coordinate";
 		public static final String COLUMN_NAME_Y_COORDINATE = "Y_coordinate";
 		public static final String COLUMN_NAME_IS_REQUIRED = "isRequired";

@@ -1,12 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    <Button
+    android:screenOrientation="portrait"
+    android:padding="10dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="Ping"
-        android:onClick="ping" />
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+         >
+        <Button
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:text="Create Form"
+	        android:onClick="createForm" />
+	    <Button
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:text="Create Form Field"
+	        android:onClick="createFormField" />
+	    <Button
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:text="Create Field Type"
+	        android:onClick="createFieldType" />
+	    <Button
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:text="Create Filled Form"
+	        android:onClick="createFilledForm" />
+    </LinearLayout>
+    <EditText 
+        android:id="@+id/text"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:lines="10"
+        android:text="But, why green?"
+        android:editable="false"
+        />
 
-</LinearLayout>
+</RelativeLayout>

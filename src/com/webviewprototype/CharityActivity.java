@@ -75,10 +75,5 @@ public class CharityActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	public void temp_redirect(View view) {
-		Intent intent = new Intent(this, TestActivity.class);
-		startActivity(intent);
-	}
 
 }

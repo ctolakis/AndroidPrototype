@@ -21,8 +21,9 @@ public final class R {
         public static final int imageButton3=0x7f070004;
         public static final int imageButton4=0x7f070002;
         public static final int imageButton5=0x7f070003;
-        public static final int menu_settings=0x7f07000b;
+        public static final int menu_settings=0x7f07000c;
         public static final int password=0x7f070009;
+        public static final int text=0x7f07000b;
         public static final int textView1=0x7f070006;
         public static final int user_name=0x7f070008;
         public static final int webview=0x7f070007;

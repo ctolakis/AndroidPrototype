@@ -1,5 +1,7 @@
 package com.webviewprototype.database;
 
+import java.util.Map;
+
 public interface DB {
 	/**
 	 * Creates a Form in the Form table.
@@ -23,7 +25,6 @@ public interface DB {
 	 * @param formID
 	 * @param fieldLabel
 	 * @param fieldTypeID
-	 * @param fieldSelectionID
 	 * @param xCoord
 	 * @param yCoord
 	 * @param isRequired
@@ -35,9 +36,8 @@ public interface DB {
 	 * @return
 	 */
 	public long createFormField(Integer fieldId, Integer formID,
-			String fieldLabel, Integer fieldTypeID, 
-			Integer fieldSelectionID, Float xCoord, Float yCoord,
-			Boolean isRequired, Boolean defaultValue,
+			String fieldLabel, Integer fieldTypeID, Float xCoord, 
+			Float yCoord, Boolean isRequired, Boolean defaultValue,
 			Float minValue, Float maxValue, Integer userID,
 			Boolean isActive);
 	
@@ -70,4 +70,12 @@ public interface DB {
 	public long createFilledForm(Integer filledFormID, Integer formID,
 			Integer fieldID, String value, Integer userID, Integer recordID,
 			Boolean isActive);
+	
+	public Map<String, String> getForm(long rowID);
+	
+	public Map<String, String> getFormField(long rowID);
+	
+	public Map<String, String> getFieldType(long rowID);
+	
+	public Map<String, String> getFilledForm(long rowID);
 }

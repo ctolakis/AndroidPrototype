@@ -1,12 +1,14 @@
 package com.webviewprototype;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.webviewprototype.database.testactivities.TestActivity;
 
 public class MainActivity extends Activity {
 	
@@ -62,4 +64,9 @@ public class MainActivity extends Activity {
     }
     
     */
+    
+	public void temp_redirect(View view) {
+		Intent intent = new Intent(this, TestActivity.class);
+		startActivity(intent);
+	}
 }

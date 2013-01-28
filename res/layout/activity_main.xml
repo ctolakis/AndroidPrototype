@@ -32,6 +32,13 @@
 	        android:text="@string/button_submit" 
 	        android:layout_gravity="center_horizontal"
 	        />
+	<Button
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:onClick="temp_redirect"
+	    android:text="It's not like I want you to click me."
+	    android:layout_gravity="center_horizontal"
+	    />
 	    
     <TextView
         android:id="@+id/error"

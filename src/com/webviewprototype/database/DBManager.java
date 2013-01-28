@@ -1,11 +1,15 @@
 package com.webviewprototype.database;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DBManager extends SQLiteOpenHelper implements DB {
 	
@@ -111,9 +115,8 @@ public class DBManager extends SQLiteOpenHelper implements DB {
 	}
 	
 	public long createFormField(Integer fieldId, Integer formID,
-			String fieldLabel, Integer fieldTypeID, 
-			Integer fieldSelectionID, Float xCoord, Float yCoord,
-			Boolean isRequired, Boolean defaultValue,
+			String fieldLabel, Integer fieldTypeID, Float xCoord, 
+			Float yCoord, Boolean isRequired, Boolean defaultValue,
 			Float minValue, Float maxValue, Integer userID,
 			Boolean isActive) {
 		long rowID = -1;
@@ -122,7 +125,6 @@ public class DBManager extends SQLiteOpenHelper implements DB {
 		values.put(DBContract.FormFields.COLUMN_NAME_FORM_ID, formID);
 		values.put(DBContract.FormFields.COLUMN_NAME_FIELD_LABEL, fieldLabel);
 		values.put(DBContract.FormFields.COLUMN_NAME_FIELD_TYPE_ID, fieldTypeID);
-		values.put(DBContract.FormFields.COLUMN_NAME_FIELD_SELECTION_ID, fieldSelectionID);
 		values.put(DBContract.FormFields.COLUMN_NAME_X_COORDINATE, xCoord);
 		values.put(DBContract.FormFields.COLUMN_NAME_Y_COORDINATE, yCoord);
 		if (isRequired)
@@ -204,5 +206,98 @@ public class DBManager extends SQLiteOpenHelper implements DB {
 		}
 		
 		return rowID;
+	}
+	
+	public Map<String, String> getForm(long rowID) {
+		HashMap<String, String> entry = new HashMap<String, String>();
+		Cursor cursor = null;
+		Log.i(LOG_TAG, Long.toString(rowID));
+		try {
+			db = this.getReadableDatabase();
+			db.beginTransaction();
+			String query = "SELECT * FROM " + DBContract.FormTable.TABLE_NAME +
+			 		" LIMIT 1 OFFSET " + Long.toString(rowID - 1);
+			Log.i(LOG_TAG, query);
+			cursor = db.rawQuery(query, null);
+			db.setTransactionSuccessful();
+			
+			if (cursor != null && cursor.getCount() > 0) {
+				cursor.moveToFirst();
+				entry.put(cursor.getColumnName(1), Integer.toString(cursor.getInt(1)));
+				entry.put(cursor.getColumnName(2), Integer.toString(cursor.getInt(2)));
+				entry.put(cursor.getColumnName(3), cursor.getString(3));
+				entry.put(cursor.getColumnName(5), cursor.getString(5));
+			}
+		} finally {
+			db.endTransaction();
+			db.close();
+		}
+		
+		return entry;
+	}
+	
+	public Map<String, String> getFormField(long rowID) {
+		HashMap<String, String> entry = new HashMap<String, String>();
+		Cursor cursor = null;
+		try {
+			db = this.getReadableDatabase();
+			db.beginTransaction();
+			String query = "SELECT * FROM " + DBContract.FormFields.TABLE_NAME +
+					" LIMIT 1 OFFSET " + Long.toString(rowID - 1);
+			cursor = db.rawQuery(query, null);
+			db.setTransactionSuccessful();
+			
+			if (cursor != null && cursor.getCount() > 0) {
+				cursor.moveToFirst();
+				entry.put(cursor.getColumnName(1), Integer.toString(cursor.getInt(1)));
+				entry.put(cursor.getColumnName(2), Integer.toString(cursor.getInt(2)));
+				entry.put(cursor.getColumnName(3), cursor.getString(3));
+				entry.put(cursor.getColumnName(4), Integer.toString(cursor.getInt(4)));
+				entry.put(cursor.getColumnName(5), Float.toString(cursor.getFloat(5)));
+				entry.put(cursor.getColumnName(6), Float.toString(cursor.getFloat(6)));
+				entry.put(cursor.getColumnName(9), Float.toString(cursor.getFloat(9)));
+				entry.put(cursor.getColumnName(10), Float.toString(cursor.getFloat(10)));
+				entry.put(cursor.getColumnName(11), Integer.toString(cursor.getInt(11)));
+			}
+		} finally {
+			db.endTransaction();
+			db.close();
+		}
+		
+		return entry;
+	}
+	
+	public Map<String, String> getFieldType(long rowID) {
+		HashMap<String, String> entry = new HashMap<String, String>();
+		Cursor cursor = null;
+		try {
+			db = this.getReadableDatabase();
+			db.beginTransaction();
+			String query = "SELECT * FROM " + DBContract.FieldType.TABLE_NAME +
+					" LIMIT 1 OFFSET " + Long.toString(rowID - 1);
+			cursor = db.rawQuery(query, null);
+			db.setTransactionSuccessful();
+			
+			if (cursor != null && cursor.getCount() > 0) {
+				cursor.moveToFirst();
+				entry.put(cursor.getColumnName(1), Integer.toString(cursor.getInt(1)));
+				entry.put(cursor.getColumnName(2), cursor.getString(2));
+				entry.put(cursor.getColumnName(3), cursor.getString(3));
+				entry.put(cursor.getColumnName(4), cursor.getString(4));
+			}
+		} finally {
+			db.endTransaction();
+			db.close();
+		}
+		
+		return entry;
+	} 
+	
+	public Map<String, String> getFilledForm(long rowID) {
+		HashMap<String, String> entry = new HashMap<String, String>();
+		
+		entry.put("I will do this", "Next");
+		
+		return entry;
 	}
 }

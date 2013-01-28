@@ -1,57 +1,84 @@
 package com.webviewprototype.database.testactivities;
 
+import java.util.Map;
+
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.EditText;
 
 import com.webviewprototype.R;
+import com.webviewprototype.database.DB;
+import com.webviewprototype.database.DBManager;
 
 public class TestActivity extends Activity {
 	
-	private static final String log_tag = "TestActivity";
+	private static final String LOG_TAG = "~TestActivity";
+	
+	private DB db;
+	private EditText textBox;
 
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.databasetest);
+        this.db = new DBManager(this);
+        this.textBox = (EditText) findViewById(R.id.text);
     }
     
-    public void ping(View view) {
-    	(Toast.makeText(this, "Pong", Toast.LENGTH_SHORT)).show();
-//    	add();
-//    	read();
+    public void createForm(View view) {
+    	Map<String, String> result = null;
+    	String printOut = "";
+    	long rowID = db.createForm(9001, 1, "Standard", "this.is.spam.cc", false);
+    	Log.i(LOG_TAG, Long.toString(rowID));
+    	if (rowID != -1)
+    		result = db.getForm(rowID);
+    	
+    	if (result != null) {
+    		for (String str : result.keySet()) {
+    			printOut = printOut.concat(str).concat(": ").concat(result.get(str).concat("\n"));
+    		}
+    	}
+    	
+    	textBox.setText(printOut);
     }
     
-//    private void read() {
-//    	Log.d(log_tag, "getting Database");
-//    	SQLiteDatabase db = new DBHelper(this).getReadableDatabase();
-//    	
-//    	Log.d(log_tag, "querying Database");
-//    	String query = "SELECT * FROM " + DBContract.FormTable.TABLE_NAME;
-//    	Cursor cursor = db.rawQuery(query, null);
-//    	Log.d(log_tag, "reading entries");
-//    	Log.d(log_tag, "Cursor length: " + Integer.toString(cursor.getCount()));
-//    	if (cursor.getCount() > 0) {
-//	    	cursor.moveToFirst();
-//	    	do {
-//	    		Long form_id = cursor.getLong(cursor.getColumnIndexOrThrow(DBContract.FormTable._ID));
-//	    		Log.i(log_tag, Long.toString(form_id));
-//	    	} while (cursor.moveToNext());
-//    	}
-//    }
-//    
-//    private void add() {
-//    	Log.d(log_tag, "getting Database");
-//    	SQLiteDatabase db = new DBHelper(this).getWritableDatabase();
-//    	
-//    	Log.d(log_tag, "adding to Database");
-//    	ContentValues values = new ContentValues();
-//    	values.put(DBContract.FormTable.COLUMN_NAME_FORM_ID, 3);
-//    	values.put(DBContract.FormTable.COLUMN_NAME_FORM_TYPE_ID, 3);
-//    	values.put(DBContract.FormTable.COLUMN_NAME_URL, "www.google.co.uk");
-//    	
-//    	long newRowId = db.insert(DBContract.FormTable.TABLE_NAME, null, values);
-//    	Log.i(log_tag, "insert successful, newRowId: " + Long.toString(newRowId));
-//    }
+    public void createFormField(View view) {
+    	Map<String, String> result = null;
+    	String printOut = "";
+    	long rowID = db.createFormField(8, 1, "Testing", 1, (float) 2, (float) 3, true, false, (float) 1, (float) 2, 1, true);
+    	Log.i(LOG_TAG, Long.toString(rowID));
+    	if (rowID != -1)
+    		result = db.getFormField(rowID);
+    	
+    	if (result != null) {
+    		for (String str : result.keySet()) {
+    			printOut = printOut.concat(str).concat(": ").concat(result.get(str).concat("\n"));
+    		}
+    	}
+    	
+    	textBox.setText(printOut);
+    }
+    
+    public void createFieldType(View view) {
+    	Map<String, String> result = null;
+    	String printOut = "";
+    	long rowID = db.createFieldType(4, "Who", "Is", "IMOU--");
+    	Log.i(LOG_TAG, Long.toString(rowID));
+    	if (rowID != -1)
+    		result = db.getFieldType(rowID);
+    	
+    	if (result != null) {
+    		for (String str : result.keySet()) {
+    			printOut = printOut.concat(str).concat(": ").concat(result.get(str).concat("\n"));
+    		}
+    	}
+    	
+    	textBox.setText(printOut);
+    }
+    
+    public void createFilledForm(View view) {
+    	
+    }
 
 }
